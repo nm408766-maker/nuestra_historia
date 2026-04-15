@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -12,7 +13,10 @@
   <div class="inicio" onclick="iniciar()">
     <div class="corazones"></div>
     <p class="frase">Desde que la vi… todo cambió 💖</p>
-    <img src="assets/img/foto1.jpg" alt="nosotros">
+<div class="contenedor-corazon">
+  <canvas id="corazon"></canvas>
+  <img src="assets/img/foto1.jpg" class="foto">
+</div>
 <p class="tocar">Toca aquí 💖</p>  </div>
 
   <!-- Audio -->
@@ -215,6 +219,43 @@ window.onload = function(){
   });
 
 }
+</script>
+<script>
+const canvas = document.getElementById("corazon");
+const ctx = canvas.getContext("2d");
+
+// 🔥 tamaño correcto del contenedor
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
+
+function drawHeart() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.beginPath();
+
+  ctx.moveTo(canvas.width/2, canvas.height/2);
+
+  for (let i = 0; i < Math.PI * 2; i += 0.01) {
+    let x = 16 * Math.pow(Math.sin(i), 3);
+    let y = -(13 * Math.cos(i) - 5 * Math.cos(2*i) - 2 * Math.cos(3*i) - Math.cos(4*i));
+
+    x *= 10;
+    y *= 11;
+
+    ctx.lineTo(canvas.width/2 + x, canvas.height/2 + y);
+  }
+
+  ctx.strokeStyle = "#00ffcc";
+  ctx.shadowColor = "#00ffcc";
+  ctx.shadowBlur = 20;
+  ctx.lineWidth = 2;
+
+  ctx.stroke();
+
+  requestAnimationFrame(drawHeart);
+}
+
+drawHeart();
 </script>
 
 </body>
