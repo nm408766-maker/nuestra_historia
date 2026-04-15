@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para ti 💖</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Pantalla inicial -->
+  <div class="inicio" onclick="iniciar()">
+    <div class="corazones"></div>
+    <p class="frase">Desde que la vi… todo cambió 💖</p>
+    <img src="assets/img/foto1.jpg" alt="nosotros">
+<p class="tocar">Toca aquí 💖</p>  </div>
+
+  <!-- Audio -->
+  <audio id="musica" loop>
+    <source src="assets/audio/cancion.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Contenido -->
+  <div id="contenido" class="oculto">
+
+  <h2 class="fade">Nuestra historia 💖</h2>
+
+    <hr>
+
+
+  <p class="fade">
+  Todo comenzó en el 2024, en la universidad.  
+  Recuerdo perfectamente ese día… estaba en el séptimo piso cuando la vi por primera vez.
+  </p>
+  <p class="fade">
+  Luego entré al aula… y solo estaba usted.  
+  Me preguntó: “¿Esta es la clase de introducción al álgebra?”
+  </p>
+  <p class="fade">
+Yo le respondí: “Sí, es esta clase”.
+  </p>
+  <p class="fade">
+  Luego, nos volvimos a encontrar en la clase de Comunicación Oral y Escrita… y ahí fue cuando se me ocurrió escribirle.
+  </p>
+  <p class="fade">
+ Y luego, lo demás es historia… cada día que pasaba, me gustaba más de usted. Aunque me aclaro que yo no le gustaba JAJA
+  </p>
+  <p class="fade">
+ Y luego, me atrevi a decirle que si la iba a dejar a su casa, y para mi sorpresa, dijo que sí.
+ y hasta el maleducado se puso nervioso y no quiso encender JAJA, pero usted me ayudo a encenderlo 💖
+  </p>
+  <p class="fade">
+  Y así fue como empezó nuestra historia 💖
+  </p>
+
+ <p class="fade">
+Y aquí fue nuestra primera salida… nuestra primera cita fuera de la universidad 💖
+</p>
+
+<video class="fade" controls poster="assets/img/foto5.jpg">
+  <source src="assets/video/video1.mp4" type="video/mp4">
+</video>
+<p class="fade">
+Aquí fue nuestra primera vez en el Picacho… y nuestra primera foto juntos 💖
+  </p>
+
+<img src="assets/img/foto2.jpg" alt="Nosotros" class="fade pequena">
+  <p class="fade">
+  Hoy, después de 1 año y 5 meses,  
+  puedo decir que usted es una de las mejores cosas que me ha pasado 💖
+  </p>
+
+<img src="assets/img/foto4.jpg" alt="Nosotros" class="fade pequena">
+  <p class="fade">
+  Gracias por todo… por cada momento, por cada risa, por estar conmigo.
+  </p>
+
+  <button onclick="final()">No presione esto 👀</button>
+
+  <p id="mensajeFinal" class="fade oculto">
+Gracias por existir…  
+usted es lo mejor que me ha pasado,  
+y no cambiaría nada de lo que hemos vivido 💖
+  </p>
+  <div id="carta" class="carta oculto">
+  <div class="carta-contenido">
+
+    <h2>14/11/2024 💖</h2>
+
+    <p>Han sido los mejores momentos de mi vida</p>
+
+    <h1>La amo Kritza💕</h1>
+
+    <p>
+      Lo nuestro no se planeó…  
+      Y pienso que ni haciendo el mejor de los planes, 
+    </p>
+     <p>
+      hubiesemos echo una historia tan bonita como la que hoy...
+    </p>
+     <p>
+      Tengo el placer de sentir como nuestra. 
+    </p>
+     <p>
+      Si imagino un lugar al que siempre quiero volver.
+      Ese lugar es usted, mi hogar, mi refugio, mi alegría. 
+    </p>
+
+    <p>
+      Y si volviera atrás…  
+      la elegiría mil veces más 💖
+    </p>
+
+    <button onclick="verVideo()">Ver nuestro video 💕</button>
+</div>
+
+<div id="videoModal" class="carta oculto">
+  <div class="carta-contenido">
+
+    <video controls autoplay>
+      <source src="assets/video/video_final.mp4" type="video/mp4">
+    </video>
+
+  </div>
+</div>
+
+</div>
+
+  <script>
+function iniciar(){
+  document.querySelector(".inicio").style.display = "none";
+
+  const contenido = document.getElementById("contenido");
+  contenido.classList.remove("oculto");
+
+  const elementos = document.querySelectorAll("#contenido .fade");
+
+  elementos.forEach((el, i) => {
+    setTimeout(() => {
+      el.classList.add("mostrar");
+    }, i * 800);
+  });
+
+  const audio = document.getElementById("musica");
+  audio.volume = 0;
+  audio.play();
+
+  let vol = 0;
+  const intervalo = setInterval(() => {
+    if(vol < 1){
+      vol += 0.05;
+      audio.volume = vol;
+    } else {
+      clearInterval(intervalo);
+    }
+  }, 200);
+}
+</script>
+  <script>
+function crearCorazones(){
+  const contenedor = document.querySelector(".corazones");
+
+  setInterval(() => {
+    const corazon = document.createElement("span");
+    corazon.innerHTML = "💖";
+
+    corazon.style.left = Math.random() * 100 + "vw";
+    corazon.style.fontSize = (Math.random() * 20 + 10) + "px";
+    corazon.style.animationDuration = (Math.random() * 3 + 5) + "s";
+
+    contenedor.appendChild(corazon);
+
+    setTimeout(() => {
+      corazon.remove();
+    }, 8000);
+  }, 300);
+}
+
+crearCorazones();
+</script>
+<script>
+function final(){
+  const carta = document.getElementById("carta");
+  carta.classList.remove("oculto");
+}
+
+// cerrar al tocar fuera de la carta
+document.getElementById("carta").addEventListener("click", function(e){
+  if(e.target.id === "carta"){
+    this.classList.add("oculto");
+  }
+});
+</script>
+<script>
+function verVideo(){
+  const video = document.getElementById("videoModal");
+  video.classList.remove("oculto");
+}
+
+// Esperar a que cargue todo el HTML
+window.onload = function(){
+
+  // cerrar carta al tocar fuera
+  document.getElementById("carta").addEventListener("click", function(e){
+    if(e.target.id === "carta"){
+      this.classList.add("oculto");
+    }
+  });
+
+  // cerrar video al tocar fuera
+  document.getElementById("videoModal").addEventListener("click", function(e){
+    if(e.target.id === "videoModal"){
+      this.classList.add("oculto");
+    }
+  });
+
+}
+</script>
+
+</body>
+</html>
