@@ -54,8 +54,8 @@ body {
 
 /* Animación zoom */
 @keyframes zoom {
-  from { transform: scale(0.8); }
-  to { transform: scale(1.00); }
+  from { transform: scale(0.1); }
+  to { transform: scale(1.0); }
 }
 
 /* Contenido oculto */
@@ -216,4 +216,53 @@ button:hover {
   width: 100%;
   max-width: 300px;
   border-radius: 15px;
+}
+#corazon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.inicio {
+  position: relative;
+  overflow: hidden;
+}
+.contenedor-corazon {
+  position: relative;
+  width: 260px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Canvas corazón neón */
+#corazon {
+  position: absolute;
+  transform: scale(1.15);
+  width: 100%;
+  height: 100%;
+  z-index:1 ;
+
+  transform: scale(0.9); /* hace que el corazón rodee la imagen */
+}
+
+/* Imagen */
+.foto {
+  width: 80%;
+  border-radius: 20px;
+  z-index: 2;
+
+  box-shadow: 
+    0 0 20px #ff4d6d,
+    0 0 40px rgba(255, 77, 109, 0.5);
+}
+
+@keyframes latido {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
